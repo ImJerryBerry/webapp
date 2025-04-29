@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.webapp.dao.ManagedUserDao">
+    
+    <resultMap id="BaseResultMap" type="com.example.webapp.entity.ManagedUser">
+        <id column="id" property="id" />
+        <result column="date" property="date" />
+        <result column="name" property="name" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="address" property="address" />
+        <result column="zip_code" property="zipCode" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, date, name, province, city, address, zip_code
+    </sql>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT 
+        <include refid="Base_Column_List" />
+        FROM users
+        ORDER BY id ASC  <!-- 改为升序 -->
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT 
+        <include refid="Base_Column_List" />
+        FROM users 
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.example.webapp.entity.ManagedUser">
+        INSERT INTO users (date, name, province, city, address, zip_code)
+        VALUES (#{date}, #{name}, #{province}, #{city}, #{address}, #{zipCode})
+    </insert>
+
+    <update id="update" parameterType="com.example.webapp.entity.ManagedUser">
+        UPDATE users
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="province != null">province = #{province},</if>
+            <if test="city != null">city = #{city},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="zipCode != null">zip_code = #{zipCode},</if>
+            <if test="date != null">date = #{date},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT 
+        <include refid="Base_Column_List" />
+        FROM users
+        WHERE name LIKE CONCAT('%', #{keyword}, '%')
+        OR province LIKE CONCAT('%', #{keyword}, '%')
+        OR city LIKE CONCAT('%', #{keyword}, '%')
+        OR address LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY id ASC
+    </select>
+</mapper>

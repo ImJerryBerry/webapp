@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.webapp.dao.UserDao">
+    <select id="findByUsername" resultType="com.example.webapp.entity.User">
+        SELECT 
+            username,
+            password,
+            email,
+            birth_date as birthDate,
+            avatar
+        FROM userT 
+        WHERE username = #{username}
+    </select>
+    
+    <insert id="insert" parameterType="com.example.webapp.entity.User">
+        INSERT INTO userT (username, password, email, birth_date, avatar)
+        VALUES (#{username}, #{password}, #{email}, #{birthDate}, #{avatar})
+    </insert>
+    
+    <update id="updatePassword">
+        UPDATE userT SET password = #{password} WHERE username = #{username}
+    </update>
+    
+    <select id="findAll" resultType="com.example.webapp.entity.User">
+        SELECT * FROM userT ORDER BY id ASC
+    </select>
+    
+    <select id="findAllAuthors" resultType="com.example.webapp.entity.User">
+        SELECT username, email, birth_date as birthDate, avatar, article_count as articleCount
+        FROM userT 
+    </select>
+    
+    <update id="updateArticleCount">
+        UPDATE userT SET article_count = #{count} WHERE username = #{username}
+    </update>
+</mapper>

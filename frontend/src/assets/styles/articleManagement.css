@@ -1,0 +1,260 @@
+.article-management {
+    width: 100%;
+    padding: 0 20px;
+}
+
+.page-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.article-dashboard {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+}
+
+/* 左侧作者列表样式 */
+.author-list-container {
+    flex: 1;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.author-list-container h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
+.author-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.author-table th,
+.author-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ebeef5;
+}
+
+.author-table th {
+    background-color: #f5f7fa;
+    color: #606266;
+    font-weight: 500;
+}
+
+.author-table tr:hover {
+    background-color: #f5f7fa;
+}
+
+.manage-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.manage-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* 右侧图表样式 */
+.chart-container {
+    flex: 1;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.chart-container h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
+.echarts-container {
+    height: 400px;
+    width: 100%;
+}
+
+/* 分页样式 */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.pagination-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.page-size-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.page-size-selector select {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.page-size-selector select:hover {
+    border-color: var(--primary-color);
+}
+
+.pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pagination button {
+    min-width: 32px;
+    height: 32px;
+    background-color: white;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination button:hover:not(:disabled) {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.pagination button:disabled {
+    cursor: not-allowed;
+    color: #c0c4cc;
+}
+
+.page-number {
+    min-width: 32px;
+    height: 32px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #606266;
+}
+
+.page-number:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.current-page {
+    color: white !important;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* 增强响应式布局 */
+@media (max-width: 1200px) {
+    .article-dashboard {
+        flex-direction: column;
+    }
+    
+    .chart-container, .author-list-container {
+        width: 100%;
+    }
+}
+
+/* 添加更精细的响应式控制 */
+@media (max-width: 768px) {
+    .article-management {
+        padding: 0 10px;
+    }
+    
+    .author-table th,
+    .author-table td {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+    
+    .manage-btn {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+    
+    .pagination {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .pagination-info, 
+    .pagination-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .chart {
+        height: 300px !important;
+    }
+}
+
+/* 添加特小屏幕适配 */
+@media (max-width: 480px) {
+    .author-table th:nth-child(3),
+    .author-table td:nth-child(3) {
+        display: none; /* 在特小屏幕上隐藏文章数列 */
+    }
+    
+    .author-table th,
+    .author-table td {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+    
+    .page-title {
+        font-size: 20px;
+    }
+    
+    .author-list-container h3,
+    .chart-container h3 {
+        font-size: 16px;
+    }
+}
+
+/* 修复图表容器在不同屏幕尺寸下的高度问题 */
+@media (max-width: 1200px) {
+    .echarts-container {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .echarts-container {
+        height: 300px;
+    }
+} 

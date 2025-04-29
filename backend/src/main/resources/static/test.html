@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>API 测试页面</title>
+    <style>
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        button { margin: 5px; padding: 5px 10px; }
+        #result { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>用户接口测试</h2>
+        
+        <!-- 注册表单 -->
+        <div class="form-group">
+            <h3>注册测试</h3>
+            <input type="text" id="reg-username" placeholder="用户名">
+            <input type="password" id="reg-password" placeholder="密码">
+            <input type="email" id="reg-email" placeholder="邮箱">
+            <input type="date" id="reg-birthDate">
+            <button onclick="register()">注册</button>
+        </div>
+
+        <!-- 登录表单 -->
+        <div class="form-group">
+            <h3>登录测试</h3>
+            <input type="text" id="login-username" placeholder="用户名">
+            <input type="password" id="login-password" placeholder="密码">
+            <button onclick="login()">登录</button>
+        </div>
+
+        <!-- 修改密码表单 -->
+        <div class="form-group">
+            <h3>修改密码测试</h3>
+            <input type="text" id="change-username" placeholder="用户名">
+            <input type="password" id="change-oldPassword" placeholder="原密码">
+            <input type="password" id="change-newPassword" placeholder="新密码">
+            <button onclick="changePassword()">修改密码</button>
+        </div>
+
+        <!-- 获取用户列表 -->
+        <div class="form-group">
+            <h3>用户列表测试</h3>
+            <button onclick="getUserList()">获取用户列表</button>
+        </div>
+
+        <!-- 结果显示区域 -->
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const baseUrl = 'http://localhost:8080/api/user';
+
+        async function showResult(data) {
+            document.getElementById('result').innerHTML = JSON.stringify(data, null, 2);
+        }
+
+        async function makeRequest(url, method, body = null) {
+            try {
+                const options = {
+                    method: method,
+                    headers: {'Content-Type': 'application/json'}
+                };
+                
+                if (body) {
+                    options.body = JSON.stringify(body);
+                }
+                
+                const response = await fetch(url, options);
+                const result = await response.json();
+                
+                showResult({
+                    status: response.status,
+                    statusText: response.statusText,
+                    data: result
+                });
+                
+                return result;
+            } catch (error) {
+                showResult({
+                    error: error.message,
+                    trace: error.stack
+                });
+            }
+        }
+
+        async function register() {
+            const data = {
+                username: document.getElementById('reg-username').value,
+                password: document.getElementById('reg-password').value,
+                email: document.getElementById('reg-email').value,
+                birthDate: document.getElementById('reg-birthDate').value,
+                avatar: null // 提供默认值或添加头像上传功能
+            };
+            
+            try {
+                const response = await fetch(`${baseUrl}/register`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                showResult(result);
+            } catch (error) {
+                showResult({error: error.message});
+            }
+        }
+
+        async function login() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            
+            try {
+                const response = await fetch(`${baseUrl}/login?username=${username}&password=${password}`, {
+                    method: 'POST'
+                });
+                const result = await response.json();
+                showResult(result);
+            } catch (error) {
+                showResult({error: error.message});
+            }
+        }
+
+        async function changePassword() {
+            const username = document.getElementById('change-username').value;
+            const oldPassword = document.getElementById('change-oldPassword').value;
+            const newPassword = document.getElementById('change-newPassword').value;
+            
+            try {
+                const response = await fetch(`${baseUrl}/password?username=${username}&oldPassword=${oldPassword}&newPassword=${newPassword}`, {
+                    method: 'PUT'
+                });
+                const result = await response.json();
+                showResult(result);
+            } catch (error) {
+                showResult({error: error.message});
+            }
+        }
+
+        async function getUserList() {
+            try {
+                const response = await fetch(`${baseUrl}/list`);
+                const result = await response.json();
+                showResult(result);
+            } catch (error) {
+                showResult({error: error.message});
+            }
+        }
+    </script>
+</body>
+</html>

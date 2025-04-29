@@ -1,0 +1,135 @@
+/* changePwd.css */
+
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.change-password-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* 让其竖屏时上下排列 */
+    align-items: center; /* 让内容居中 */
+    flex-wrap: wrap;
+    max-width: 650px;
+    width: 100%;
+}
+
+.main-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.left-column, .right-column {
+    flex: 1;
+    min-width: 250px;
+    padding: 5px;
+}
+
+/* 输入框样式 */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* 按钮 */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.reset-password-button,
+.return-login-button {
+    flex: 1; /* 让两个按钮均分可用空间 */
+    padding: 10px;
+    background: #7ab770;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    text-decoration: none; /* 移除下划线 */
+}
+
+/* 为router-link添加类，确保它也是flex:1 */
+.login-link {
+    flex: 1;
+    display: flex;
+}
+
+/* 鼠标悬停时的效果 */
+.reset-password-button:hover {
+    background: #689d5b;
+}
+
+.return-login-button {
+    background: #666;
+}
+
+.return-login-button:hover {
+    background: #555;
+}
+
+
+/* 响应式布局 */
+@media (max-width: 800px) {
+    .form-group {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .left-column, .right-column {
+        width: 100%;
+        padding: 0;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        width: 100%;
+    }
+
+    .reset-password-button,
+    .login-link {
+        width: 100%;
+        flex: 1;
+    }
+
+    .return-login-button {
+        width: 100%;
+    }
+}

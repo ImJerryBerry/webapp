@@ -1,0 +1,124 @@
+/* login.css */
+
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.login-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 650px;
+    width: 100%;
+}
+
+.social-login,
+.manual-login {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+}
+
+/* 主标题 */
+.main-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* 其他方式登录 */
+.social-login button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.qq { background: #459af8; }
+.wechat { background: #56ab6e; }
+.alipay { background: #51b1f7; }
+
+.icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* 将图标转为白色 */
+}
+
+/* 账号密码登录 */
+.manual-login input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.manual-login button {
+    width: 100%;
+    padding: 10px;
+    background: #7ab770;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 9px;
+    font-size: 16px;
+}
+
+.manual-button:hover {
+    background: #689d5b;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+    background: #666;
+    color: white;
+    border-radius: 0 0 8px 8px;
+    width: 100%;
+}
+
+.footer a {
+    color: inherit; /* 继承父元素的白色 */
+    text-decoration: none;
+    transition: text-decoration 0.3s ease;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 800px) {
+    .login-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+
