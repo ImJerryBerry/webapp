@@ -11,8 +11,8 @@
           <span class="arrow" :class="{ 'arrow-down': openMenus.function }">▶</span>
         </div>
         <div class="submenu" v-show="openMenus.function">
-          <div class="submenu-item" @click="$router.push('/user-management')">用户管理</div>
-          <div class="submenu-item" @click="navigateTo('article-management')">文章管理</div>
+          <div class="submenu-item" @click="$router.push('/user-management')">联系人管理</div>
+          <div class="submenu-item" @click="$router.push('/article-management')">文章管理</div>
         </div>
       </div>
 
@@ -40,7 +40,19 @@
           <span class="home" @click="navigateTo('home')">首页</span>
         </div>
         <div class="menu-right">
-          <span class="logout-btn" @click="handleLogout">退出登录</span>
+          <div class="user-dropdown">
+            <div
+              class="user-dropdown-toggle"
+              :class="{ 'open': dropdownOpen }"
+              @click="toggleDropdown">
+              <span class="username-display">{{ username }} 用户</span>
+              <span class="dropdown-arrow">▼</span>
+            </div>
+            <div class="dropdown-menu" :class="{ 'open': dropdownOpen }">
+              <div class="dropdown-item" @click="$router.push('/home')">返回新版</div>
+              <div class="dropdown-item danger" @click="handleLogout">退出登录</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -88,7 +100,7 @@
 </template>
 
 <script>
-import homeJs from "@/assets/js/home.js";
+import homeJs from "@/assets/js/home-old.js";
 import { themeManager } from "@/utils/themeManager.js";
 
 export default {
@@ -100,5 +112,5 @@ export default {
 </script>
 
 <style scoped>
-@import "@/assets/styles/home.css";
+@import "@/assets/styles/home-old.css";
 </style>

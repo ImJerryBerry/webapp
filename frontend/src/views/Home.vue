@@ -49,6 +49,7 @@
               <span class="dropdown-arrow">▼</span>
             </div>
             <div class="dropdown-menu" :class="{ 'open': dropdownOpen }">
+              <div class="dropdown-item" @click="$router.push('/home-old')">切换日历</div>
               <div class="dropdown-item danger" @click="handleLogout">退出登录</div>
             </div>
           </div>

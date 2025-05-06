@@ -10,7 +10,8 @@ export default {
             },
             weekDays: ['日', '一', '二', '三', '四', '五', '六'],
             currentYear: new Date().getFullYear(),
-            currentMonth: new Date().getMonth() + 1
+            currentMonth: new Date().getMonth() + 1,
+            dropdownOpen: false
         };
     },
     computed: {
@@ -75,6 +76,10 @@ export default {
 
         toggleSubmenu(menu) {
             this.openMenus[menu] = !this.openMenus[menu];
+        },
+
+        toggleDropdown() {
+            this.dropdownOpen = !this.dropdownOpen;
         },
 
         changeTheme(theme) {

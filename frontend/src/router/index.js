@@ -6,6 +6,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import ChangePwd from '../views/ChangePwd.vue'
 import Home from '../views/Home.vue'
+import HomeOld from '../views/Home-old.vue'
 import UserManagement from '../views/UserManagement.vue'
 import ArticleManagement from '../views/ArticleManagement.vue'
 import AuthorArticles from '../views/AuthorArticles.vue'
@@ -36,6 +37,11 @@ const routes = [
         path: '/home',
         name: 'Home',
         component: Home,
+    },
+    {
+        path: '/home-old',
+        name: 'HomeOld',
+        component: HomeOld,
     },
     {
         path: '/user-management',
